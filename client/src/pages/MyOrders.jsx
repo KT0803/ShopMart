@@ -16,7 +16,8 @@ const MyOrders = () => {
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:5001/api/orders/myorders', {
+        const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5001';
+        const res = await fetch(`${baseUrl}/api/orders/myorders`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

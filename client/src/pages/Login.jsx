@@ -17,7 +17,8 @@ const Login = () => {
     e.preventDefault();
     setError('');
     try {
-      const url = `http://127.0.0.1:5001/api/auth/${isLogin ? 'login' : 'register'}`;
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5001';
+      const url = `${baseUrl}/api/auth/${isLogin ? 'login' : 'register'}`;
       const body = isLogin ? { email, password } : { name, email, password };
       const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       const data = await res.json();

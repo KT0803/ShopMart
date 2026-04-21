@@ -13,7 +13,8 @@ const Payment = () => {
   const handlePayment = async () => {
     setIsProcessing(true);
     try {
-      const res = await fetch('http://127.0.0.1:5001/api/orders', {
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5001';
+      const res = await fetch(`${baseUrl}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${user.token}` },
         body: JSON.stringify({ 

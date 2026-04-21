@@ -13,7 +13,8 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const url = new URL('http://127.0.0.1:5001/api/products');
+        const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5001';
+        const url = new URL(`${baseUrl}/api/products`);
         if (keyword) url.searchParams.append('keyword', keyword);
         if (category) url.searchParams.append('category', category);
 
